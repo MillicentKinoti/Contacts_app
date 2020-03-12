@@ -1,5 +1,6 @@
 import unittest#importing the unittest module
 #importing the contact class
+
 from contacts_app import Contact
 
 class TestContact(unittest.TestCase):#TestContact is a subclass that inherits from unittest.TestCase
@@ -70,3 +71,24 @@ def find_by_number(cls,number):
         for contact in cls.contact_list:
             if contact.phone_number == number:
                 return contact 
+
+#to check if a contact object actually exists
+
+
+def test_contact_exists(self):
+    self.new_contact.save_contact()
+    test_contact=Contact("Test", "user","071234678" ,"test@user.com")#new contact
+    test_contact.save_contact()
+    contact_exists=Contact.contact_exists("0712345678")
+    self.assertTrue(contact_exists)
+
+@classmethod
+def contact_exists(cls, number):
+    for contact in cls.contact_list:
+        if contact.phone_number == number:
+            return True
+    return False
+
+
+
+
